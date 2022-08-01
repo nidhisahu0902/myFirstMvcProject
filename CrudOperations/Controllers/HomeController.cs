@@ -12,6 +12,23 @@ namespace CrudOperations.Controllers
         public ActionResult Index()
         {
             var data = GetEmployee();       //taking static data from getemployee function
+            ViewBag.MyCustomProp = "View bag is is used to send dynamic data from controller to view";
+            ViewBag.list1 = new List<string>() {"n","k"};
+
+            //for creating viewbag for the dynamic property of model employee
+            List<Employee> empList = new List<Employee>()
+            {
+                    new Employee(){name ="n",address="udaipur" },
+                    new Employee(){name ="k",address="udaipur1" }
+
+
+            };
+            ViewBag.myNewList = empList;
+            //for creating viewbag for the dynamic property of model employee
+
+            //for creating view data
+            ViewData["MyKey"] = "This is view data";
+            ViewData["MySecondKey"] = new List<string>() { "n1", "k1" };
             return View(data);              //sending data with the view
         }
 
@@ -42,7 +59,7 @@ namespace CrudOperations.Controllers
         [HttpPost]
         public ActionResult index(Employee emp)
         {
-            Console.WriteLine("data posted");
+           // Console.WriteLine(emp);
             return View();
         }
 
